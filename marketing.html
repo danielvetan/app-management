@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>myEval — Navy evaluations, written right</title>
+<meta name="description" content="myEval helps Navy reporting seniors and raters write EVALs, CHIEFEVALs and FITREPs one question at a time, checked against BUPERSINST 1610.10H and the NAVFIT98A rules. Works offline on iPhone and iPad.">
+<meta name="theme-color" content="#0b1630">
+<meta property="og:title" content="myEval — Navy evaluations, written right">
+<meta property="og:description" content="Write EVALs, CHIEFEVALs and FITREPs anywhere. Every block checked. Print, send securely, or hand off to NAVFIT98A.">
+<meta property="og:image" content="images/myeval-icon-512.png">
+<meta property="og:type" content="website">
+<!-- Once the app is live, add your App Store ID to show Apple's Smart App Banner in Safari:
+<meta name="apple-itunes-app" content="app-id=XXXXXXXXXX"> -->
+<link rel="icon" type="image/png" href="images/favicon-96.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="stylesheet" href="site.css">
+<style>
+/* hero */
+.hero{position:relative;overflow:hidden;color:#e9eef9;
+  background:radial-gradient(1200px 520px at 78% 8%,rgba(64,110,230,.35),transparent 60%),
+             radial-gradient(800px 420px at 10% 110%,rgba(201,164,92,.18),transparent 60%),
+             linear-gradient(180deg,#0b1630 0%,#081022 100%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding-top:84px;padding-bottom:0}
+.hero .wrap>div:first-child{padding-bottom:72px}
+.hero h1{color:#fff}
+.hero h1 .gold{background:linear-gradient(90deg,#e6c983,#c49a45);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lede{color:#b9c3d9;margin-top:20px}
+.hero .eyebrow{color:#d9b873}
+.hero-app{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.hero-app img{width:64px;height:64px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.hero-app div{line-height:1.25}
+.hero-app strong{display:block;color:#fff;font-size:1.1rem}
+.hero-app span{color:#97a3bd;font-size:.88rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero .btn-primary{background:#fff;color:#0b1324}
+.hero .btn-ghost{background:transparent;border-color:rgba(255,255,255,.22);color:#fff}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;color:#8e9ab4;font-size:.86rem}
+.hero-meta span{display:inline-flex;align-items:center;gap:6px}
+.hero-meta svg{width:15px;height:15px;color:#d9b873}
+.fan{position:relative;height:600px;align-self:end}
+.fan img{position:absolute;bottom:-60px;width:270px;border-radius:30px;box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06)}
+.fan .c{left:50%;transform:translateX(-50%);z-index:3;width:290px;bottom:-40px}
+.fan .l{left:50%;transform:translateX(-112%) rotate(-7deg);z-index:2;opacity:.92}
+.fan .r{left:50%;transform:translateX(12%) rotate(7deg);z-index:1;opacity:.92}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;padding-top:56px;text-align:left}
+  .fan{height:440px}
+  .fan img{width:200px}.fan .c{width:220px}
+}
+@media (max-width:480px){.fan{height:380px}.fan img{width:160px;border-radius:22px}.fan .c{width:190px}}
+
+/* sections */
+section{padding:96px 0 0}
+.sec-head{max-width:640px;margin-bottom:40px}
+.sec-head h2{margin:10px 0 14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.grid3{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.grid3{grid-template-columns:1fr}}
+.card p{color:var(--muted);margin-top:8px;font-size:.98rem}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+@media (max-width:800px){.steps{grid-template-columns:1fr}}
+.step{position:relative;padding:28px 26px;border-radius:var(--radius);background:var(--surface-2)}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:var(--ink);color:var(--bg);font-weight:700;font-size:.95rem;margin-bottom:16px}
+.step p{color:var(--muted);margin-top:8px;font-size:.98rem}
+
+/* gallery */
+.gallery{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 22px;margin:0 -20px;
+  scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.gallery figure{flex:0 0 auto;width:250px;margin:0;scroll-snap-align:center}
+.gallery img{border-radius:26px;box-shadow:var(--shadow);border:1px solid var(--line);aspect-ratio:603/1311;width:100%;height:auto}
+@media (min-width:1100px){.gallery{justify-content:center;overflow:visible}.gallery figure{width:200px}}
+
+/* privacy band */
+.band{border-radius:28px;padding:56px 48px;display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center;
+  background:linear-gradient(135deg,#0b1630,#14285a);color:#c9d2e6;position:relative;overflow:hidden}
+.band h2{color:#fff;margin:10px 0 14px}
+.band .eyebrow{color:#d9b873}
+.band ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.band li{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  padding:14px 16px;border-radius:14px}
+.band li svg{flex:0 0 20px;width:20px;height:20px;color:#d9b873;margin-top:2px}
+.band li b{color:#fff;font-weight:620}
+.band a{color:#e6c983}
+@media (max-width:800px){.band{grid-template-columns:1fr;padding:40px 24px}}
+
+/* ipad */
+.ipad{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.ipad>*{min-width:0}
+.ipad img{height:auto;width:100%;border-radius:28px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
+.spec{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.spec b{display:block;color:var(--ink);font-size:.98rem}
+.spec span{color:var(--muted);font-size:.88rem}
+@media (max-width:800px){.ipad{grid-template-columns:1fr}.ipad img{max-width:420px;margin:0 auto}}
+
+/* final cta */
+.final{text-align:center;padding-top:110px}
+.final img{width:96px;height:96px;border-radius:22px;margin:0 auto 22px;box-shadow:0 14px 34px rgba(11,22,48,.28)}
+.final .lede{margin:14px auto 0}
+.final .cta{justify-content:center}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="marketing.html"><img src="images/apple-touch-icon.png" alt="">myEval</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="hide-sm" href="#features">Features</a>
+      <a class="hide-sm" href="#privacy">Privacy</a>
+      <a href="app-support.html">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="hero-app">
+          <img src="images/myeval-icon-512.png" alt="myEval app icon">
+          <div><strong>myEval</strong><span>For iPhone and iPad</span></div>
+        </div>
+        <span class="eyebrow">EVAL · CHIEFEVAL · FITREP</span>
+        <h1 style="margin-top:12px">Navy evals,<br><span class="gold">written right.</span><br>Anywhere.</h1>
+        <p class="lede">Write evaluations one plain question at a time. myEval checks every block against the instruction before you print, so your reports go up the chain ready to sign.</p>
+        <div class="cta">
+          <a class="btn btn-primary" id="appstore" href="#">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.17-1.54 2.66-.39 6.59 1.1 8.75.73 1.05 1.6 2.24 2.73 2.2 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.7.71 2.85.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.32-3.5zM14.2 6.13c.6-.74 1.01-1.75.9-2.77-.87.04-1.93.58-2.55 1.31-.56.65-1.05 1.69-.92 2.69.97.08 1.97-.49 2.57-1.23z"/></svg>
+            <span id="appstore-label">Download on the App Store</span>
+          </a>
+          <a class="btn btn-ghost" href="#features">See what it does</a>
+        </div>
+        <div class="hero-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Works offline</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No account</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No tracking</span>
+        </div>
+      </div>
+      <div class="fan" aria-hidden="true">
+        <img class="l" src="images/02-psg-rsca.jpg" alt="">
+        <img class="r" src="images/03-summary-groups.jpg" alt="">
+        <img class="c" src="images/01-one-question.jpg" alt="">
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Features</span>
+        <h2>Everything NAVFIT98A checks. None of the hassle.</h2>
+        <p class="lede">No installs, no Access database, no hunting for the right block. Just the questions that matter, on the device you already carry.</p>
+      </div>
+      <div class="grid3">
+        <div class="card">
+          <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10M7 12h10M7 16h6"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg></div>
+          <h3>One question at a time</h3>
+          <p>Plain steps walk you through every block of the EVAL, CHIEFEVAL and FITREP, with the right format shown as you type.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Every rule, checked</h3>
+          <p>Built on BUPERSINST 1610.10H CH-2 and the NAVFIT98A v33 checks. Problems are flagged with a “Fix it” link before you print.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+          <h3>PSG RSCA, worked out</h3>
+          <p>On E-5 and E-6 EVALs the last line of block 43 is kept for the RSCA. Enter your BOL numbers once and myEval does the math.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg></div>
+          <h3>Summary groups</h3>
+          <p>Group Sailors who are ranked together. Type the reporting senior and dates once, and every eval in the group stays in sync.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg></div>
+          <h3>Hand off to NAVFIT98A</h3>
+          <p>Export a file NAVFIT98A can bring in with its own Import Data, for commands that still route evals through NAVFIT.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+          <h3>Encrypt &amp; send</h3>
+          <p>Pass a report or a whole group to your rater or senior rater as a password-protected file, sealed with AES-256.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></div>
+          <h3>Print-ready forms</h3>
+          <p>Prints the official layout, with comments counted the way they’ll print — not the way they look on your screen.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5Z"/><path d="M4 19a2 2 0 0 0 2 2h13"/></svg></div>
+          <h3>The instruction, built in</h3>
+          <p>The full BUPERSINST 1610.10H text, searchable and offline. Tap any block to read its guidance.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M9 9h.01M15 9h.01M9 15c1.7 1.3 4.3 1.3 6 0"/></svg></div>
+          <h3>App Lock with Face ID</h3>
+          <p>Optional lock with Face ID or your passcode. SSNs are only kept when App Lock is on, and stay masked until you confirm it’s you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How it works</span>
+        <h2>From blank form to ready-to-sign.</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Answer the questions</h3><p>Start an EVAL, CHIEFEVAL or FITREP and fill it in step by step — on the ship, on the road, or between meetings.</p></div>
+        <div class="step"><h3>Let myEval check it</h3><p>Formats, limits, grade rules and the PSG RSCA are checked as you go. Anything that would stop the report is called out.</p></div>
+        <div class="step"><h3>Print, send or export</h3><p>Print the form, send an encrypted copy up the chain, or export for NAVFIT98A.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">A closer look</span>
+        <h2>Designed for the way you actually write evals.</h2>
+      </div>
+      <div class="gallery" tabindex="0" aria-label="App screenshots">
+        <figure><img src="images/01-one-question.jpg" loading="lazy" alt="Writing an eval one question at a time, starting with the Sailor's name, rate and DoD ID"></figure>
+        <figure><img src="images/02-psg-rsca.jpg" loading="lazy" alt="Block 43 comments with a line meter and the reserved PSG RSCA line"></figure>
+        <figure><img src="images/03-summary-groups.jpg" loading="lazy" alt="Summary groups screen listing evals to add to a group"></figure>
+        <figure><img src="images/04-navfit-export.jpg" loading="lazy" alt="Evals list with menu options to encrypt and send or export for NAVFIT98A"></figure>
+        <figure><img src="images/05-built-on-the-rules.jpg" loading="lazy" alt="Settings screen showing App Lock, tips and the about section"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <span class="eyebrow">Privacy</span>
+          <h2>Your evals stay on your device.</h2>
+          <p>myEval has no servers, no sign-in and no analytics. We never see your reports — they’re stored encrypted on your iPhone or iPad and leave it only when you choose to share them.</p>
+          <p style="margin-top:14px"><a href="privacy.html">Read the privacy policy →</a></p>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>Encrypted drafts.</b> Reports are saved with AES-256 encryption, with the key kept in the iOS Keychain.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/></svg><span><b>SSNs protected.</b> Optional, never required, and only stored when App Lock is on.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><path d="m3 3 18 18"/></svg><span><b>No tracking.</b> No ads, no analytics, no third-party SDKs that phone home.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap ipad">
+      <img src="images/ipad-01-one-question.jpg" decoding="async" width="1032" height="1376" alt="myEval on iPad, writing an eval step by step">
+      <div>
+        <span class="eyebrow">iPhone &amp; iPad</span>
+        <h2 style="margin:10px 0 14px">Room to think on iPad.</h2>
+        <p class="lede">The same app, laid out for the bigger screen — great for working through a whole summary group at your desk.</p>
+        <div class="specs">
+          <div class="spec"><b>Forms</b><span>EVAL, CHIEFEVAL, FITREP</span></div>
+          <div class="spec"><b>Devices</b><span>iPhone and iPad</span></div>
+          <div class="spec"><b>Requires</b><span>iOS / iPadOS 15 or later</span></div>
+          <div class="spec"><b>Connection</b><span>None needed — fully offline</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap narrow">
+      <img src="images/myeval-icon-512.png" alt="">
+      <h2>Write your next eval with myEval.</h2>
+      <p class="lede">Built by a Sailor, for the people who write evals.</p>
+      <div class="cta">
+        <a class="btn btn-primary" data-appstore href="#">Download on the App Store</a>
+        <a class="btn btn-ghost" href="app-support.html">Get support</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <div class="brand" style="margin-bottom:10px"><img src="images/apple-touch-icon.png" alt="">myEval</div>
+      <p class="disclaimer">myEval is an independent app. It is not affiliated with or endorsed by the U.S. Navy or the Department of Defense. Always check reports against the current instruction before signing.</p>
+      <p style="margin-top:10px">© 2026 VTAN LLC. All rights reserved.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="app-support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:danielvetan@gmail.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  /* Paste the App Store link here once the app is live, e.g.
+     "https://apps.apple.com/app/myeval/id1234567890". Until then the buttons read "Coming soon". */
+  const APP_STORE_URL = "";
+  document.querySelectorAll("#appstore,[data-appstore]").forEach(a => {
+    if (APP_STORE_URL) { a.href = APP_STORE_URL; }
+    else {
+      a.removeAttribute("href"); a.setAttribute("aria-disabled","true"); a.style.cursor = "default";
+      const label = a.querySelector("#appstore-label") || a;
+      label.textContent = "Coming soon to the App Store";
+    }
+  });
+</script>
+</body>
+</html>

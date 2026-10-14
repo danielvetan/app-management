@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>myEval Support</title>
+<meta name="description" content="Get help with myEval: contact the developer, report a bug, and find answers about writing, sending, printing and exporting Navy evaluations.">
+<meta name="theme-color" content="#0b1630">
+<link rel="icon" type="image/png" href="images/favicon-96.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="stylesheet" href="site.css">
+<style>
+.contact{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-top:8px}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+.contact .card h2{font-size:1.35rem;margin:0 0 8px}
+.contact .card p{color:var(--muted)}
+.contact .btn{margin-top:20px}
+.mail{font-size:1.08rem;font-weight:620;color:var(--ink);word-break:break-all}
+.checklist{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.checklist li{display:flex;gap:10px;align-items:flex-start;color:var(--text);font-size:.96rem;margin:0}
+.checklist svg{flex:0 0 18px;width:18px;height:18px;color:var(--gold);margin-top:3px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+@media (max-width:760px){.quick{grid-template-columns:1fr}}
+.quick a{display:block;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:620}
+.quick a span{display:block;color:var(--muted);font-weight:400;font-size:.9rem;margin-top:4px}
+.quick a:hover{text-decoration:none;border-color:var(--blue)}
+.faq{margin-top:10px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;font-weight:620;color:var(--ink);font-size:1.04rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq .a{padding:0 0 22px;color:var(--text)}
+.faq .a p+p{margin-top:10px}
+.faq .a ol,.faq .a ul{margin:10px 0 0;padding-left:1.25em}
+.faq .a li{margin:6px 0}
+.req{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+@media (max-width:760px){.req{grid-template-columns:1fr 1fr}}
+.req div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.req b{display:block;color:var(--ink)}
+.req span{color:var(--muted);font-size:.9rem}
+kbd{font:inherit;font-size:.9em;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="marketing.html"><img src="images/apple-touch-icon.png" alt="">myEval</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="hide-sm" href="marketing.html">Overview</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="app-support.html" aria-current="page">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <div class="page-head narrow">
+    <span class="eyebrow">Support</span>
+    <h1>How can we help?</h1>
+    <p class="lede">Questions about myEval, a problem to report, or an idea to make it better — we’d like to hear it.</p>
+  </div>
+
+  <div class="contact">
+    <div class="card">
+      <h2>Contact us</h2>
+      <p>Email is the fastest way to reach the developer. We read every message and reply as soon as we can.</p>
+      <p style="margin-top:16px" class="mail"><a href="mailto:danielvetan@gmail.com?subject=myEval%20support">danielvetan@gmail.com</a></p>
+      <a class="btn btn-primary" href="mailto:danielvetan@gmail.com?subject=myEval%20support">Email support</a>
+      <p class="small" style="margin-top:18px">Developer: VTAN LLC · Missouri, USA</p>
+    </div>
+    <div class="card">
+      <h2>Reporting a bug?</h2>
+      <p>These details help us fix it quickly:</p>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Your device (e.g. iPhone 16, iPad Air)</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>iOS version — <span class="muted">Settings › General › About</span></span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>myEval version — <span class="muted">myEval › Settings › About</span></span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Form type (EVAL, CHIEFEVAL or FITREP) and the steps that cause it</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>A screenshot, if you can</span></li>
+      </ul>
+      <p class="small" style="margin-top:14px"><b>Please don’t send real SSNs or personal details</b> in emails or screenshots — blur or cover them first.</p>
+    </div>
+  </div>
+
+  <div class="quick">
+    <a href="#faq-start">Getting started<span>Forms, offline use, groups</span></a>
+    <a href="#faq-share">Printing &amp; sharing<span>Print, send, NAVFIT98A</span></a>
+    <a href="#faq-privacy">Privacy &amp; security<span>App Lock, SSNs, your data</span></a>
+  </div>
+
+  <h2 id="faq-start">Getting started</h2>
+  <div class="faq">
+    <details>
+      <summary>Which forms does myEval support?</summary>
+      <div class="a"><p>myEval writes the Navy’s enlisted EVAL (E-1 to E-6), the CHIEFEVAL (E-7 to E-9) and the officer FITREP, following BUPERSINST 1610.10H CH-2 and the checks in NAVFIT98A v33.</p></div>
+    </details>
+    <details>
+      <summary>Do I need an internet connection or an account?</summary>
+      <div class="a"><p>No. myEval works completely offline and has no sign-in. Your reports are stored only on your device.</p></div>
+    </details>
+    <details>
+      <summary>How do summary groups work?</summary>
+      <div class="a">
+        <p>A summary group is for Sailors with the same paygrade, reporting senior and end date who are ranked together. Go to <b>Groups › New summary group</b> and add the evals that belong to it.</p>
+        <p>Shared details — duty status, UIC, ship/station, dates, the reporting senior blocks and command employment — are entered once and kept in sync on every member’s report. Quotas and averages are worked out from the group.</p>
+      </div>
+    </details>
+    <details>
+      <summary>What is the PSG RSCA line, and why is it required?</summary>
+      <div class="a">
+        <p>BUPERSINST 1610.10H requires the post summary group (PSG) reporting senior cumulative average on the last line of block 43 for E-5 and E-6 EVALs, written like <kbd>PSG RSCA: 4.68</kbd>. If it’s missing, the Sailor’s RSCA PMA can count as 0.00 for advancement.</p>
+        <p>myEval keeps that last line free for you. Type the value yourself, or set up the <b>RSCA tracker</b> (Settings › RSCA tracker) with the trait sum and count from your BOL report and myEval works it out for every report.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Where can I read the instruction?</summary>
+      <div class="a"><p>Open the <b>Learn</b> tab. The full BUPERSINST 1610.10H CH-2 text is built in and searchable offline. In any step, tap a block tag (for example “Block 43”) to jump to its guidance.</p></div>
+    </details>
+  </div>
+
+  <h2 id="faq-share">Printing &amp; sharing</h2>
+  <div class="faq">
+    <details>
+      <summary>How do I print a report?</summary>
+      <div class="a"><p>Open the report and go to the Review step. When nothing is blocking it, choose <b>Print</b> to send it to an AirPrint printer or save it as a PDF. Comments are measured the way they will print, so what fits in myEval fits on the form.</p></div>
+    </details>
+    <details>
+      <summary>How do I send a report to my rater or senior rater?</summary>
+      <div class="a">
+        <ol>
+          <li>On the Evals tab, tap the report’s menu (•••) and choose <b>Encrypt &amp; send</b> — or send a whole group from the group screen.</li>
+          <li>Set a password, or use the one myEval suggests.</li>
+          <li>Send the file by email, Messages or AirDrop, and give the password to the recipient a different way (for example, by phone).</li>
+        </ol>
+        <p>The recipient taps the attachment and chooses <b>Open in myEval</b>, or uses <b>Import</b> on the Evals tab. SSNs are left out unless you turn on “Include saved SSNs”. Always follow your command’s policy for sending personal information.</p>
+      </div>
+    </details>
+    <details>
+      <summary>How do I bring a report into NAVFIT98A?</summary>
+      <div class="a">
+        <ol>
+          <li>In myEval, choose <b>Export for NAVFIT98A</b> from a report’s or group’s menu, and share the zipped file to your computer.</li>
+          <li>Unzip it. In NAVFIT98A v33.2, select a folder and choose <b>File › Import Data</b>, then pick the exported file.</li>
+        </ol>
+        <p>For your protection the NAVFIT file never contains SSNs — add them in NAVFIT98A after importing.</p>
+      </div>
+    </details>
+  </div>
+
+  <h2 id="faq-privacy">Privacy &amp; security</h2>
+  <div class="faq">
+    <details>
+      <summary>Where are my reports stored? Can you see them?</summary>
+      <div class="a"><p>Only on your device, encrypted. myEval has no servers and collects no data, so we can’t see, recover or restore your reports. Details are in our <a href="privacy.html">Privacy Policy</a>.</p></div>
+    </details>
+    <details>
+      <summary>Why does saving an SSN require App Lock?</summary>
+      <div class="a"><p>SSNs are optional. If you choose to save one, App Lock (Face ID, Touch ID or your passcode) must be on so no one else can open the app and see it. Saved SSNs stay masked, and showing one asks you to confirm it’s you. App Lock stays required until every saved SSN is removed.</p></div>
+    </details>
+    <details>
+      <summary>What happens if I delete the app or get a new phone?</summary>
+      <div class="a"><p>Your reports live only on the device, so deleting myEval deletes them. Before you delete the app or switch devices, print the reports you need or use <b>Encrypt &amp; send</b> to move them, then import them on the new device.</p></div>
+    </details>
+    <details>
+      <summary>How do I delete all my data?</summary>
+      <div class="a"><p>Go to <b>Settings › Delete all drafts</b> in myEval. This removes your reports, saved SSNs and RSCA tracker numbers from the device. Deleting the app also removes its data.</p></div>
+    </details>
+    <details>
+      <summary>Is myEval an official Navy app?</summary>
+      <div class="a"><p>No. myEval is an independent app made by VTAN LLC. It is not affiliated with or endorsed by the U.S. Navy or the Department of Defense. It follows the published instruction, but you are responsible for checking each report against the current instruction and your command’s guidance before signing.</p></div>
+    </details>
+  </div>
+
+  <h2>Purchases &amp; refunds</h2>
+  <div class="faq">
+    <details>
+      <summary>How do I request a refund?</summary>
+      <div class="a"><p>App Store purchases and refunds are handled by Apple. Go to <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, sign in with your Apple Account, find myEval and choose <b>Request a refund</b>.</p></div>
+    </details>
+  </div>
+
+  <h2>System requirements</h2>
+  <div class="req">
+    <div><b>iPhone</b><span>iOS 15.0 or later</span></div>
+    <div><b>iPad</b><span>iPadOS 15.0 or later</span></div>
+    <div><b>Internet</b><span>Not required</span></div>
+    <div><b>Account</b><span>Not required</span></div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <div class="brand" style="margin-bottom:10px"><img src="images/apple-touch-icon.png" alt="">myEval</div>
+      <p class="disclaimer">myEval is an independent app. It is not affiliated with or endorsed by the U.S. Navy or the Department of Defense.</p>
+      <p style="margin-top:10px">© 2026 VTAN LLC. All rights reserved.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="marketing.html">Overview</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:danielvetan@gmail.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
