@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>myEval — Performance evaluations, written right</title>
-<meta name="description" content="myEval helps Navy reporting seniors and raters write EVALs, CHIEFEVALs and FITREPs one question at a time, checked against BUPERSINST 1610.10H and the NAVFIT98A rules. Works offline on iPhone and iPad.">
+<meta name="description" content="myEval helps Navy reporting seniors, raters and Sailors write EVALs, CHIEFEVALs and FITREPs one question at a time, checked against BUPERSINST 1610.10H and the NAVFIT98A rules. Track counseling and your career path against the LaDR. Works offline on iPhone, iPad and Mac.">
 <meta name="theme-color" content="#0b1630">
 <meta property="og:title" content="myEval — Navy evaluations, written right">
-<meta property="og:description" content="Write EVALs, CHIEFEVALs and FITREPs anywhere. Every block checked. Print, send securely, or hand off to NAVFIT98A.">
+<meta property="og:description" content="Write EVALs, CHIEFEVALs and FITREPs anywhere. Every block checked. Counseling on file, career path on track. iPhone, iPad and Mac.">
 <meta property="og:image" content="images/myeval-icon-512.png">
 <meta property="og:type" content="website">
 <!-- Once the app is live, add your App Store ID to show Apple's Smart App Banner in Safari:
@@ -52,12 +52,14 @@
 
 /* sections */
 section{padding:96px 0 0}
-.sec-head{max-width:640px;margin-bottom:40px}
+.sec-head{max-width:660px;margin-bottom:40px}
 .sec-head h2{margin:10px 0 14px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media (max-width:900px){.grid3{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.grid3{grid-template-columns:1fr}}
 .card p{color:var(--muted);margin-top:8px;font-size:.98rem}
+.card .new{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;font-size:.7rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;vertical-align:2px;background:var(--gold-soft);color:var(--gold)}
 
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
@@ -67,12 +69,57 @@ section{padding:96px 0 0}
   background:var(--ink);color:var(--bg);font-weight:700;font-size:.95rem;margin-bottom:16px}
 .step p{color:var(--muted);margin-top:8px;font-size:.98rem}
 
+/* spotlight: career path + counseling */
+.spot{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.spot>*{min-width:0}
+.spot.flip{grid-template-columns:1.05fr 1fr}
+.spot.flip .phones{order:-1}
+.phones{display:flex;gap:18px;justify-content:center}
+.phones img{width:calc(50% - 9px);max-width:260px;border-radius:28px;box-shadow:var(--shadow);border:1px solid var(--line);height:auto}
+.phones img:nth-child(2){margin-top:56px}
+.points{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px}
+.points li{display:flex;gap:14px;align-items:flex-start}
+.points li svg{flex:0 0 22px;width:22px;height:22px;color:var(--blue);margin-top:3px}
+.points b{color:var(--ink);font-weight:640}
+.points span{color:var(--muted)}
+.analogy{margin-top:26px;padding:18px 20px;border-radius:16px;background:var(--surface-2);border-left:4px solid var(--gold)}
+.analogy b{color:var(--ink)}
+.analogy p{color:var(--muted);font-size:.98rem}
+.analogy p+p{margin-top:8px}
+@media (max-width:860px){.spot,.spot.flip{grid-template-columns:1fr}.spot.flip .phones{order:0}}
+
 /* gallery */
 .gallery{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 22px;margin:0 -20px;
   scrollbar-width:thin;-webkit-overflow-scrolling:touch}
-.gallery figure{flex:0 0 auto;width:250px;margin:0;scroll-snap-align:center}
+.gallery figure{flex:0 0 auto;width:230px;margin:0;scroll-snap-align:center}
 .gallery img{border-radius:26px;box-shadow:var(--shadow);border:1px solid var(--line);aspect-ratio:603/1311;width:100%;height:auto}
-@media (min-width:1100px){.gallery{justify-content:center;overflow:visible}.gallery figure{width:200px}}
+.gallery figcaption{margin-top:12px;font-size:.86rem;color:var(--muted);text-align:center}
+
+/* platforms */
+.platforms{display:grid;gap:28px}
+.tabs{justify-self:start;display:inline-flex;padding:4px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);gap:4px}
+.tabs input{position:absolute;opacity:0;pointer-events:none}
+.tabs label{padding:9px 20px;border-radius:999px;font-weight:620;font-size:.95rem;color:var(--muted);cursor:pointer;user-select:none}
+#pf-ipad:checked~.tabs label[for=pf-ipad],#pf-mac:checked~.tabs label[for=pf-mac]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(11,19,36,.12)}
+#pf-ipad:focus-visible~.tabs label[for=pf-ipad],#pf-mac:focus-visible~.tabs label[for=pf-mac]{outline:3px solid var(--blue);outline-offset:2px}
+.pf-input{position:absolute;opacity:0;pointer-events:none}
+.pane{display:none}
+#pf-ipad:checked~.panes .pane-ipad,#pf-mac:checked~.panes .pane-mac{display:grid}
+.pane{grid-template-columns:1.6fr 1fr;gap:40px;align-items:start}
+.pane>*{min-width:0}
+.shot-main{border-radius:22px;box-shadow:0 2px 6px rgba(11,19,36,.06),0 24px 60px rgba(11,19,36,.14);border:1px solid var(--line);width:100%;height:auto;background:var(--surface)}
+.thumbs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+.thumbs button{padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;background:var(--surface);opacity:.7;transition:opacity .15s,border-color .15s}
+.thumbs button[aria-pressed=true],.thumbs button:hover{opacity:1;border-color:var(--blue)}
+.thumbs img{width:100%;height:auto;display:block}
+.pane h3{font-size:1.35rem;margin-bottom:8px}
+.pane p.muted{font-size:1rem}
+.pane .points{margin-top:18px}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:26px}
+.spec{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.spec b{display:block;color:var(--ink);font-size:.98rem}
+.spec span{color:var(--muted);font-size:.88rem}
+@media (max-width:900px){.pane{grid-template-columns:1fr}}
 
 /* privacy band */
 .band{border-radius:28px;padding:56px 48px;display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center;
@@ -86,16 +133,6 @@ section{padding:96px 0 0}
 .band li b{color:#fff;font-weight:620}
 .band a{color:#e6c983}
 @media (max-width:800px){.band{grid-template-columns:1fr;padding:40px 24px}}
-
-/* ipad */
-.ipad{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.ipad>*{min-width:0}
-.ipad img{height:auto;width:100%;border-radius:28px;box-shadow:var(--shadow);border:1px solid var(--line)}
-.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
-.spec{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.spec b{display:block;color:var(--ink);font-size:.98rem}
-.spec span{color:var(--muted);font-size:.88rem}
-@media (max-width:800px){.ipad{grid-template-columns:1fr}.ipad img{max-width:420px;margin:0 auto}}
 
 /* final cta */
 .final{text-align:center;padding-top:110px}
@@ -111,6 +148,8 @@ section{padding:96px 0 0}
     <a class="brand" href="marketing.html"><img src="images/apple-touch-icon.png" alt="">myEval</a>
     <nav class="nav-links" aria-label="Primary">
       <a class="hide-sm" href="#features">Features</a>
+      <a class="hide-sm" href="#career">Career path</a>
+      <a class="hide-sm" href="#platforms">iPad &amp; Mac</a>
       <a class="hide-sm" href="#privacy">Privacy</a>
       <a href="app-support.html">Support</a>
     </nav>
@@ -123,11 +162,11 @@ section{padding:96px 0 0}
       <div>
         <div class="hero-app">
           <img src="images/myeval-icon-512.png" alt="myEval app icon">
-          <div><strong>myEval</strong><span>For iPhone and iPad</span></div>
+          <div><strong>myEval</strong><span>For iPhone, iPad and Mac</span></div>
         </div>
         <span class="eyebrow">EVAL · CHIEFEVAL · FITREP</span>
         <h1 style="margin-top:12px">Your evals,<br><span class="gold">written right.</span><br>Anywhere.</h1>
-        <p class="lede">Write evaluations one plain question at a time. myEval checks every block against the instruction before you print, so your reports go up the chain ready to sign.</p>
+        <p class="lede">Write evaluations one plain question at a time, keep every counseling on file, and see where each Sailor stands on their career path. myEval checks every block against the instruction before you print.</p>
         <div class="cta">
           <a class="btn btn-primary" id="appstore" href="#">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.17-1.54 2.66-.39 6.59 1.1 8.75.73 1.05 1.6 2.24 2.73 2.2 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.7.71 2.85.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.32-3.5zM14.2 6.13c.6-.74 1.01-1.75.9-2.77-.87.04-1.93.58-2.55 1.31-.56.65-1.05 1.69-.92 2.69.97.08 1.97-.49 2.57-1.23z"/></svg>
@@ -139,11 +178,12 @@ section{padding:96px 0 0}
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Works offline</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No account</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No tracking</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>iPhone · iPad · Mac</span>
         </div>
       </div>
       <div class="fan" aria-hidden="true">
-        <img class="l" src="images/02-psg-rsca.jpg" alt="">
-        <img class="r" src="images/03-summary-groups.jpg" alt="">
+        <img class="l" src="images/05-career-path.jpg" alt="">
+        <img class="r" src="images/02-psg-rsca.jpg" alt="">
         <img class="c" src="images/01-one-question.jpg" alt="">
       </div>
     </div>
@@ -160,37 +200,52 @@ section{padding:96px 0 0}
         <div class="card">
           <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10M7 12h10M7 16h6"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg></div>
           <h3>One question at a time</h3>
-          <p>Plain steps walk you through every block of the EVAL, CHIEFEVAL and FITREP, with the right format shown as you type.</p>
+          <p>Plain steps walk you through every block of the EVAL, CHIEFEVAL and FITREP, with the printed format shown as you type.</p>
         </div>
         <div class="card">
           <div class="icon-chip gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-          <h3>Every rule, checked</h3>
-          <p>Built on BUPERSINST 1610.10H CH-2 and the NAVFIT98A v33 checks. Problems are flagged with a “Fix it” link before you print.</p>
+          <h3>Every rule, checked live</h3>
+          <p>Built on BUPERSINST 1610.10H CH-2 and the NAVFIT98A v33 checks. Issues show under the field as you type, with a “Fix” that takes you straight there.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+          <h3>Career path <span class="new">New</span></h3>
+          <p>Every eval in a Sailor’s record checked against their rating’s LaDR, at their time in service and time in rate. See what’s done, what’s due, and what’s ahead.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
+          <h3>Counseling on file <span class="new">New</span></h3>
+          <p>Mid-term counseling the way chapter 18 lays it out, plus positive and corrective chits and Page 13 drafts — dated, filed by Sailor, ready at eval time.</p>
+        </div>
+        <div class="card">
+          <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="m9 15 2 2 4-4"/></svg></div>
+          <h3>Blocks 30–31 in one tap <span class="new">New</span></h3>
+          <p>Knows each paygrade’s mid-term month. When you write the eval, the mid-term on file fills the date counseled and the counselor for you.</p>
         </div>
         <div class="card">
           <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
           <h3>PSG RSCA, worked out</h3>
-          <p>On E-5 and E-6 EVALs the last line of block 43 is kept for the RSCA. Enter your BOL numbers once and myEval does the math.</p>
+          <p>Enter your BOL numbers once. myEval keeps the post summary group RSCA current as grades change, and reserves the last line of block 43 for it.</p>
         </div>
         <div class="card">
           <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></svg></div>
           <h3>Summary groups</h3>
-          <p>Group Sailors who are ranked together. Type the reporting senior and dates once, and every eval in the group stays in sync.</p>
+          <p>Type the reporting senior, dates and command once. Every eval in the group stays in sync, with quotas and the group average shown as you grade.</p>
         </div>
         <div class="card">
           <div class="icon-chip gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg></div>
           <h3>Hand off to NAVFIT98A</h3>
-          <p>Export a file NAVFIT98A can bring in with its own Import Data, for commands that still route evals through NAVFIT.</p>
+          <p>Export a file NAVFIT98A brings in with its own Import Data, for commands that still route evals through NAVFIT.</p>
         </div>
         <div class="card">
           <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
           <h3>Encrypt &amp; send</h3>
-          <p>Pass a report or a whole group to your rater or senior rater as a password-protected file, sealed with AES-256.</p>
+          <p>Pass a report or a whole group up the chain as a password-protected file, sealed with AES-256. Move everything to a new device over Wi-Fi with a QR code.</p>
         </div>
         <div class="card">
           <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></div>
           <h3>Print-ready forms</h3>
-          <p>Prints the official layout, with comments counted the way they’ll print — not the way they look on your screen.</p>
+          <p>The official layout, with comments counted the way they print. Sign with a saved signature unlocked by Face ID or Touch ID.</p>
         </div>
         <div class="card">
           <div class="icon-chip gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5Z"/><path d="M4 19a2 2 0 0 0 2 2h13"/></svg></div>
@@ -199,9 +254,52 @@ section{padding:96px 0 0}
         </div>
         <div class="card">
           <div class="icon-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M9 9h.01M15 9h.01M9 15c1.7 1.3 4.3 1.3 6 0"/></svg></div>
-          <h3>App Lock with Face ID</h3>
-          <p>Optional lock with Face ID or your passcode. SSNs are only kept when App Lock is on, and stay masked until you confirm it’s you.</p>
+          <h3>App Lock</h3>
+          <p>Optional lock with Face ID, Touch ID or your passcode. SSNs are only kept when App Lock is on, and stay masked until you confirm it’s you.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="career">
+    <div class="wrap spot">
+      <div>
+        <span class="eyebrow">New · Career path</span>
+        <h2 style="margin:10px 0 14px">See where you stand — not just on this eval.</h2>
+        <p class="lede">Add your PEBD and dates of rank, and your past evals. myEval reads all of them against your rating’s Learning and Development Roadmap.</p>
+        <ul class="points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Done, with proof.</b> Each course and qualification shows the eval and block it came from, and your years of service then.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 16.5h.01"/><circle cx="12" cy="12" r="9"/></svg><span><b>Due now, and not on record.</b> Required PME for your paygrade, and anything no eval ever mentioned — mark it done if it never made it into writing.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span><b>What’s ahead.</b> The next paygrade’s requirements and billets, and how far you are from the rating’s average time to advance.</span></li>
+        </ul>
+        <div class="analogy">
+          <p><b>Think of it as a degree audit.</b> The LaDR is the degree plan; your evals are the transcripts.</p>
+          <p>An HM1 with 9½ years in sees: ILDC done in a 2021 eval · ALDC due now · CPO courses ahead · HMC average at 15.8 years of service.</p>
+        </div>
+      </div>
+      <div class="phones">
+        <img src="images/05-career-path.jpg" loading="lazy" width="603" height="1311" alt="Career path for an HM1: 10.6 years in service, a timeline of each paygrade’s average time to advance, and the next required courses">
+        <img src="images/08-ladr.jpg" loading="lazy" width="603" height="1311" alt="An eval compared with the HM E-6 roadmap: 82 percent, a strong match">
+      </div>
+    </div>
+  </section>
+
+  <section id="counseling">
+    <div class="wrap spot flip">
+      <div class="phones">
+        <img src="images/06-counseling.jpg" loading="lazy" width="603" height="1311" alt="A Sailor’s file: mid-term due next May, a corrective chit and the last mid-term with goals met">
+        <img src="images/07-midterm-use.jpg" loading="lazy" width="603" height="1311" alt="The eval’s counseling page offering the mid-term on file, with a Use button to fill blocks 30 and 31">
+      </div>
+      <div>
+        <span class="eyebrow">New · For leaders</span>
+        <h2 style="margin:10px 0 14px">The folder in your desk drawer, done right.</h2>
+        <p class="lede">Keep a file for every Sailor you lead. When eval season comes, March isn’t a memory — it’s on file.</p>
+        <ul class="points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span><b>Mid-terms on schedule.</b> E-6 in May, E-5 in September — each Sailor shows when theirs is due, or overdue.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span><b>The conversation, structured.</b> Self-appraisal (NAVPERS 1610/20 or IDP), strengths, areas to improve, the Sailor’s feedback, and SMART goals with due dates.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span><b>Chits and Page 13 drafts.</b> Positive and corrective counseling with the facts, the standard and the plan. Print or share a copy with signature lines.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>There when you write.</b> The eval fills blocks 30 and 31 from the mid-term, and lists every chit dated in the period beside your comments.</span></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -213,8 +311,8 @@ section{padding:96px 0 0}
         <h2>From blank form to ready-to-sign.</h2>
       </div>
       <div class="steps">
-        <div class="step"><h3>Answer the questions</h3><p>Start an EVAL, CHIEFEVAL or FITREP and fill it in step by step — on the ship, on the road, or between meetings.</p></div>
-        <div class="step"><h3>Let myEval check it</h3><p>Formats, limits, grade rules and the PSG RSCA are checked as you go. Anything that would stop the report is called out.</p></div>
+        <div class="step"><h3>Answer the questions</h3><p>Start an EVAL, CHIEFEVAL or FITREP and fill it in step by step — on the ship, on the road, or at your desk.</p></div>
+        <div class="step"><h3>Let myEval check it</h3><p>Formats, limits, grade rules, quotas and the PSG RSCA are checked as you go. Counseling and the career path are right there.</p></div>
         <div class="step"><h3>Print, send or export</h3><p>Print the form, send an encrypted copy up the chain, or export for NAVFIT98A.</p></div>
       </div>
     </div>
@@ -223,15 +321,83 @@ section{padding:96px 0 0}
   <section>
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">A closer look</span>
+        <span class="eyebrow">iPhone</span>
         <h2>Designed for the way you actually write evals.</h2>
       </div>
-      <div class="gallery" tabindex="0" aria-label="App screenshots">
-        <figure><img src="images/01-one-question.jpg" loading="lazy" alt="Writing an eval one question at a time, starting with the Sailor's name, rate and DoD ID"></figure>
-        <figure><img src="images/02-psg-rsca.jpg" loading="lazy" alt="Block 43 comments with a line meter and the reserved PSG RSCA line"></figure>
-        <figure><img src="images/03-summary-groups.jpg" loading="lazy" alt="Summary groups screen listing evals to add to a group"></figure>
-        <figure><img src="images/04-navfit-export.jpg" loading="lazy" alt="Evals list with menu options to encrypt and send or export for NAVFIT98A"></figure>
-        <figure><img src="images/05-built-on-the-rules.jpg" loading="lazy" alt="Settings screen showing App Lock, tips and the about section"></figure>
+      <div class="gallery" tabindex="0" aria-label="iPhone screenshots">
+        <figure><img src="images/01-one-question.jpg" loading="lazy" width="603" height="1311" alt="Writing an eval one question at a time"><figcaption>One question at a time</figcaption></figure>
+        <figure><img src="images/02-psg-rsca.jpg" loading="lazy" width="603" height="1311" alt="Block 43 comments with headline, paragraphs, a printed preview and the reserved PSG RSCA line"><figcaption>Comments, counted as printed</figcaption></figure>
+        <figure><img src="images/03-summary-groups.jpg" loading="lazy" width="603" height="1311" alt="A summary group with shared details entered once"><figcaption>Summary groups</figcaption></figure>
+        <figure><img src="images/04-review.jpg" loading="lazy" width="603" height="1311" alt="Review screen: all questions answered and checked, ready to print"><figcaption>Checked and ready</figcaption></figure>
+        <figure><img src="images/05-career-path.jpg" loading="lazy" width="603" height="1311" alt="Career path timeline and next required courses"><figcaption>Career path</figcaption></figure>
+        <figure><img src="images/10-midterm.jpg" loading="lazy" width="603" height="1311" alt="Mid-term counseling record with self-appraisal, strengths and areas for improvement"><figcaption>Mid-term counseling</figcaption></figure>
+        <figure><img src="images/09-rsca.jpg" loading="lazy" width="603" height="1311" alt="RSCA tracker listing reporting seniors"><figcaption>RSCA tracker</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="platforms">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">iPad &amp; Mac</span>
+        <h2>Room to think at your desk.</h2>
+        <p class="lede">The same app, built for each screen: a sidebar and inspector on iPad, a real Mac window with a source list, toolbar and menu-bar shortcuts.</p>
+      </div>
+      <div class="platforms">
+        <input class="pf-input" type="radio" name="pf" id="pf-ipad" checked>
+        <input class="pf-input" type="radio" name="pf" id="pf-mac">
+        <div class="tabs" role="tablist" aria-label="Platform">
+          <label for="pf-ipad" role="tab">iPad</label>
+          <label for="pf-mac" role="tab">Mac</label>
+        </div>
+        <div class="panes">
+          <div class="pane pane-ipad" data-viewer>
+            <div>
+              <img class="shot-main" src="images/ipad-01-one-question.jpg" width="1400" height="965" decoding="async" alt="myEval on iPad">
+              <div class="thumbs">
+                <button type="button" aria-pressed="true" data-src="images/ipad-01-one-question.jpg" data-alt="myEval on iPad: the eval outline in a sidebar, questions in the middle, the instruction on the right"><img src="images/ipad-01-one-question.jpg" loading="lazy" alt="Eval steps"></button>
+                <button type="button" aria-pressed="false" data-src="images/ipad-02-sailors.jpg" data-alt="Sailors on iPad: the list beside a Sailor’s career path"><img src="images/ipad-02-sailors.jpg" loading="lazy" alt="Sailors"></button>
+                <button type="button" aria-pressed="false" data-src="images/ipad-03-groups.jpg" data-alt="Summary groups on iPad with the group detail beside the list"><img src="images/ipad-03-groups.jpg" loading="lazy" alt="Groups"></button>
+                <button type="button" aria-pressed="false" data-src="images/ipad-04-comments.jpg" data-alt="Writing comments on iPad with the line meter and checks"><img src="images/ipad-04-comments.jpg" loading="lazy" alt="Comments"></button>
+              </div>
+            </div>
+            <div>
+              <h3>iPad</h3>
+              <p class="muted">Work through a whole summary group with the outline, the form and the instruction side by side.</p>
+              <ul class="points">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Sidebar and split views</b> for evals, groups and Sailors.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Instruction inspector</b> beside every question.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Keyboard and trackpad</b> — ⌘N, ⌘F, ⌘↩.</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="pane pane-mac" data-viewer>
+            <div>
+              <img class="shot-main" src="images/mac-01-evals.jpg" width="1600" height="1000" decoding="async" alt="myEval on Mac">
+              <div class="thumbs">
+                <button type="button" aria-pressed="true" data-src="images/mac-01-evals.jpg" data-alt="myEval on Mac: the evals table with an inspector"><img src="images/mac-01-evals.jpg" loading="lazy" alt="Evals"></button>
+                <button type="button" aria-pressed="false" data-src="images/mac-02-editor.jpg" data-alt="The Mac editor: a two-column form with the steps in the sidebar"><img src="images/mac-02-editor.jpg" loading="lazy" alt="Editor"></button>
+                <button type="button" aria-pressed="false" data-src="images/mac-03-sailor.jpg" data-alt="A Sailor file on Mac: career path timeline and next required courses"><img src="images/mac-03-sailor.jpg" loading="lazy" alt="Sailor file"></button>
+                <button type="button" aria-pressed="false" data-src="images/mac-04-group.jpg" data-alt="A summary group on Mac with quotas and the post summary group RSCA"><img src="images/mac-04-group.jpg" loading="lazy" alt="Group"></button>
+              </div>
+            </div>
+            <div>
+              <h3>Mac</h3>
+              <p class="muted">A real Mac app: resizable window, source list, toolbar, and every command in the menu bar.</p>
+              <ul class="points">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Evals as a table</b> with progress, status and an inspector.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>The whole form at once</b> in a two-column editor, with live checks.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Shortcuts</b> — ⌘N new eval, ⌘P print, ⌘1–5 sections.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><b>Forms</b><span>EVAL, CHIEFEVAL, FITREP</span></div>
+          <div class="spec"><b>Devices</b><span>iPhone, iPad and Mac</span></div>
+          <div class="spec"><b>Requires</b><span>iOS / iPadOS 15 or later · macOS 12 or later</span></div>
+          <div class="spec"><b>Connection</b><span>None needed — fully offline</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -242,31 +408,14 @@ section{padding:96px 0 0}
         <div>
           <span class="eyebrow">Privacy</span>
           <h2>Your evals stay on your device.</h2>
-          <p>myEval has no servers, no sign-in and no analytics. We never see your reports — they’re stored encrypted on your iPhone or iPad and leave it only when you choose to share them.</p>
+          <p>myEval has no servers, no sign-in and no analytics. We never see your reports or counseling records — they’re stored encrypted on your device and leave it only when you choose to share them.</p>
           <p style="margin-top:14px"><a href="privacy.html">Read the privacy policy →</a></p>
         </div>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>Encrypted drafts.</b> Reports are saved with AES-256 encryption, with the key kept in the iOS Keychain.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/></svg><span><b>SSNs protected.</b> Optional, never required, and only stored when App Lock is on.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>Encrypted on device.</b> Evals and Sailor files are saved with AES-256 encryption, with the key kept in the Keychain.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/></svg><span><b>SSNs protected.</b> Optional, never required, only stored when App Lock is on — and never kept in a Sailor file.</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><path d="m3 3 18 18"/></svg><span><b>No tracking.</b> No ads, no analytics, no third-party SDKs that phone home.</span></li>
         </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap ipad">
-      <img src="images/ipad-01-one-question.jpg" decoding="async" width="1032" height="1376" alt="myEval on iPad, writing an eval step by step">
-      <div>
-        <span class="eyebrow">iPhone &amp; iPad</span>
-        <h2 style="margin:10px 0 14px">Room to think on iPad.</h2>
-        <p class="lede">The same app, laid out for the bigger screen — great for working through a whole summary group at your desk.</p>
-        <div class="specs">
-          <div class="spec"><b>Forms</b><span>EVAL, CHIEFEVAL, FITREP</span></div>
-          <div class="spec"><b>Devices</b><span>iPhone and iPad</span></div>
-          <div class="spec"><b>Requires</b><span>iOS / iPadOS 15 or later</span></div>
-          <div class="spec"><b>Connection</b><span>None needed — fully offline</span></div>
-        </div>
       </div>
     </div>
   </section>
@@ -275,7 +424,7 @@ section{padding:96px 0 0}
     <div class="wrap narrow">
       <img src="images/myeval-icon-512.png" alt="">
       <h2>Write your next eval with myEval.</h2>
-      <p class="lede">Built by a Sailor, for the people who write evals.</p>
+      <p class="lede">Built by a Sailor, for the people who write evals — and the Sailors who earn them.</p>
       <div class="cta">
         <a class="btn btn-primary" data-appstore href="#">Download on the App Store</a>
         <a class="btn btn-ghost" href="app-support.html">Get support</a>
@@ -288,7 +437,7 @@ section{padding:96px 0 0}
   <div class="wrap">
     <div>
       <div class="brand" style="margin-bottom:10px"><img src="images/apple-touch-icon.png" alt="">myEval</div>
-      <p class="disclaimer">myEval is an independent app. It is not affiliated with or endorsed by the U.S. Navy or the Department of Defense. Always check reports against the current instruction before signing.</p>
+      <p class="disclaimer">myEval is an independent app. It is not affiliated with or endorsed by the U.S. Navy or the Department of Defense. Always check reports against the current instruction before signing. Screenshots show fictional Sailors.</p>
       <p style="margin-top:10px">© 2026 VTAN LLC. All rights reserved.</p>
     </div>
     <nav aria-label="Footer">
@@ -310,6 +459,15 @@ section{padding:96px 0 0}
       const label = a.querySelector("#appstore-label") || a;
       label.textContent = "Coming soon to the App Store";
     }
+  });
+
+  /* iPad / Mac screenshot viewers: a thumbnail swaps the large shot. */
+  document.querySelectorAll("[data-viewer]").forEach(v => {
+    const main = v.querySelector(".shot-main");
+    v.querySelectorAll(".thumbs button").forEach(b => b.addEventListener("click", () => {
+      v.querySelectorAll(".thumbs button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      main.src = b.dataset.src; main.alt = b.dataset.alt;
+    }));
   });
 </script>
 </body>
